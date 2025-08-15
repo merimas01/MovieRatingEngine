@@ -9,6 +9,7 @@ using MRE.Models;
 using MRE.Models.SearchObjects;
 using MRE.Services.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace MRE.Services
 {
@@ -20,16 +21,15 @@ namespace MRE.Services
       
 
 
-        public async Task<List<Movies>> GetTop10Movies(bool isShow = false, int take=10, BaseSearchObject? search=null) //length + 10
+        public async Task<List<Movies>> GetNext10Movies(bool isShow = false, int take=10, int skip=0, BaseSearchObject? search=null) //skip=length, take next 10
         {
+            //optimizovanije jer se samo 10 filmova vraca
 
             var query = _context.Movies.AsQueryable();
 
             if (isShow == false) {
                 query.Where(x => x.IsShow == false);
             } else query.Where(x => x.IsShow == true);
-
-
 
             query =
                query.Include(x => x.MovieRatings)
@@ -40,7 +40,7 @@ namespace MRE.Services
                 query = query.Where(x => x.Title.Contains(search.FTS) || x.Description.Contains(search.FTS));         
             }
 
-            query =query.OrderByDescending(x => x.MovieRatings.Average(r => r.Rate))
+            query=query.OrderByDescending(x => x.MovieRatings.Average(r => r.Rate)).Skip(skip)
             .Take(take);
 
             var list= await query.ToListAsync();

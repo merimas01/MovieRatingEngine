@@ -14,10 +14,10 @@ namespace MRE.Controllers
             _service = service;
         }
 
-        [HttpGet("top10/{isShow}/{take}")]
-        public async Task<List<Movies>> GetTop10Movies(bool isShow = false, int take = 10, [FromQuery] BaseSearchObject? search = null)
+        [HttpGet("next10/{isShow}/{take}/{skip}")]
+        public async Task<List<Movies>> GetNext10Movies(bool isShow = false, int take = 10, int skip=0, [FromQuery] BaseSearchObject? search = null)
         {
-            return await _service.GetTop10Movies(isShow, take, search);   
+            return await _service.GetNext10Movies(isShow, take, skip, search);   
         }
     }
 }

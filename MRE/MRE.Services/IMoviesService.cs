@@ -10,6 +10,6 @@ namespace MRE.Services
 {
     public interface IMoviesService : IService<Movies, BaseSearchObject>
     {
-        public Task<List<Movies>> GetTop10Movies(bool isShow = false, int take = 10, BaseSearchObject? search = null);
+        public Task<List<Movies>> GetNext10Movies(bool isShow = false, int take = 10, int skip=0, BaseSearchObject? search = null);
     }
 }
