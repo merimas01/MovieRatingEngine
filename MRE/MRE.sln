@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRE", "MRE\MRE.csproj", "{3BEF2B13-164E-4A9D-9EA5-5CCF19C5BEBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRE.Models", "MRE.Models\MRE.Models.csproj", "{D47D97EE-F995-43E1-B942-EB9AE3002FF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRE.Services", "MRE.Services\MRE.Services.csproj", "{7B492C47-18EB-49D4-8387-05BB4C234506}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BEF2B13-164E-4A9D-9EA5-5CCF19C5BEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BEF2B13-164E-4A9D-9EA5-5CCF19C5BEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BEF2B13-164E-4A9D-9EA5-5CCF19C5BEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BEF2B13-164E-4A9D-9EA5-5CCF19C5BEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D47D97EE-F995-43E1-B942-EB9AE3002FF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D47D97EE-F995-43E1-B942-EB9AE3002FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D47D97EE-F995-43E1-B942-EB9AE3002FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D47D97EE-F995-43E1-B942-EB9AE3002FF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B492C47-18EB-49D4-8387-05BB4C234506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B492C47-18EB-49D4-8387-05BB4C234506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B492C47-18EB-49D4-8387-05BB4C234506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B492C47-18EB-49D4-8387-05BB4C234506}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

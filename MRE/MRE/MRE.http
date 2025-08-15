@@ -1,0 +1,6 @@
+@MRE_HostAddress = http://localhost:5208
+
+GET {{MRE_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
