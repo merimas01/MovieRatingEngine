@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 
 
 const HomePage = () => {
@@ -76,7 +77,7 @@ const HomePage = () => {
             headers: {
               "Authorization": `Basic ${basicAuth}`,
               "Accept": "application/json",
-              "Content-Type": "application/json", 
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({ movieId: movieId, rate: rateValue }),
           }
@@ -119,27 +120,34 @@ const HomePage = () => {
     <>
       <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
 
-        <h1 className="title">Movie Rating Engine</h1>
+        <h1 className="title">Movie Rating Engine 🎬 </h1>
 
-        <div className="search-toggle">
+        <div className="search">
 
 
           <Box
             component="form"
-            sx={{ '& > :not(style)': { m: 0, width: '120ch' } }}
+            sx={{
+              '& > :not(style)': {
+                m: 0,
+                width: { xs: '90%', sm: '70%', md: '50%', lg: '120ch' }  /*responsive */
+              }
+            }}
             noValidate
             autoComplete="off"
           >
 
-            <TextField id="standard-basic" label="🔍 Search..." variant="standard" />
+            <TextField id="standard-basic" label="Search..." variant="standard" />
           </Box>
+        </div>
 
-          <Box display="flex" alignItems="center" justifyContent="space-between" >
+
+        <div className="toggle">
+          <Box display="flex" alignItems="center" justifyContent="space-between" width={100} >
             <Typography sx={{ fontSize: !isChecked ? "25px" : "15px", fontWeight: !isChecked ? "bold" : "normal" }}>Movies</Typography>
             <Switch checked={isChecked} onChange={handleChange} />
             <Typography sx={{ fontSize: isChecked ? "25px" : "15px", fontWeight: isChecked ? "bold" : "normal" }}>Shows</Typography>
           </Box>
-
         </div>
 
 
@@ -212,8 +220,8 @@ const HomePage = () => {
               borderRadius: "8px",
               minWidth: "200px",
               display: "flex",
-              flexDirection: "column", 
-              gap: "5px", 
+              flexDirection: "column",
+              gap: "5px",
               alignItems: "center",
               width: "400px",
               maxWidth: "90%"
