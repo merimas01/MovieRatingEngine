@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MRE.Models;
 using MRE.Services;
 
 namespace MRE.Controllers
@@ -21,7 +22,7 @@ namespace MRE.Controllers
             }
 
             [HttpGet()]
-            public async Task<List<T>> Get([FromQuery] TSearch search = null)
+            public async Task<PagedResult<T>> Get([FromQuery] TSearch search = null)
             {
                 return await _service.Get(search);
             }

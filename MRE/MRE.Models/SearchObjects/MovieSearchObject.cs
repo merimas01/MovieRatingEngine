@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MRE.Models.SearchObjects
 {
-    public class BaseSearchObject
+    public class MovieSearchObject : BaseSearchObject
     {
-        public int? Page { get; set; }
-        public int? PageSize { get; set; }
+        public string? FTS { get; set; }
+        public bool? isShow { get; set; } = false;
     }
 }

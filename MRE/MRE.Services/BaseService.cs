@@ -8,6 +8,7 @@ using MRE.Models.SearchObjects;
 using MRE.Services.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using MRE.Models;
 
 
 namespace MRE.Services
@@ -23,21 +24,31 @@ namespace MRE.Services
             _mapper = mapper;
         }
 
-        public virtual async Task<List<T>> Get(TSearch search)
+        public virtual async Task<PagedResult<T>> Get(TSearch search)
         {
             var query = _context.Set<TDb>().AsQueryable();
 
-            List<T> result = new List<T>();
+            PagedResult<T> result = new PagedResult<T>();
 
             query = AddInclude(query, search);
 
             query = AddFilter(query, search);
 
+            result.Count = await query.CountAsync();
+
+            if (search?.Page.HasValue == true && search?.PageSize.HasValue == true)
+            {
+                query = query.Skip(search.Page.Value * search.PageSize.Value).Take(search.PageSize.Value);
+                result.CurrentCount = search.Page.Value * search.PageSize.Value + search.PageSize.Value;
+            }
+            else
+                result.CurrentCount = result.Count;
+
             var list = await query.ToListAsync();
 
             var tmp = _mapper.Map<List<T>>(list);
 
-            result = tmp;
+            result.Result = tmp;
 
             return result;
         }

@@ -8,8 +8,8 @@ using MRE.Models.SearchObjects;
 
 namespace MRE.Services
 {
-    public interface IMoviesService : IService<Movies, BaseSearchObject>
+    public interface IMoviesService : IService<Movies, MovieSearchObject>
     {
-        public Task<List<Movies>> GetNext10Movies(bool isShow = false, int take = 10, int skip=0, BaseSearchObject? search = null);
+        public Task<List<Movies>> GetTop10(bool isShow = false);
     }
 }

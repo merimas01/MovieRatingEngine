@@ -6,18 +6,18 @@ using MRE.Services;
 
 namespace MRE.Controllers
 {
-    public class MoviesController : BaseController<Models.Movies, BaseSearchObject>
+    public class MoviesController : BaseController<Models.Movies, MovieSearchObject>
     {
         IMoviesService _service;
-        public MoviesController(ILogger<BaseController<Movies, BaseSearchObject>> logger, IMoviesService service) : base(logger, service)
+        public MoviesController(ILogger<BaseController<Movies, MovieSearchObject>> logger, IMoviesService service) : base(logger, service)
         {
             _service = service;
         }
 
-        [HttpGet("next10/{isShow}/{take}/{skip}")]
-        public async Task<List<Movies>> GetNext10Movies(bool isShow = false, int take = 10, int skip=0, [FromQuery] BaseSearchObject? search = null)
+        [HttpGet("top10/{isShow}")]
+        public async Task<List<Movies>> GetTop10(bool isShow = false)
         {
-            return await _service.GetNext10Movies(isShow, take, skip, search);   
+            return await _service.GetTop10(isShow);   
         }
     }
 }

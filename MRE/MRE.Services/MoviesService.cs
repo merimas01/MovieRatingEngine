@@ -10,40 +10,35 @@ using MRE.Models.SearchObjects;
 using MRE.Services.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MRE.Services
 {
-    public class MoviesService : BaseService<Movies, Movie, BaseSearchObject>, IMoviesService
+    public class MoviesService : BaseService<Movies, Movie, MovieSearchObject>, IMoviesService
     {
         public MoviesService(MovieRatingEngineContext context, IMapper mapper) : base(context, mapper)
         {
         }
-      
 
-
-        public async Task<List<Movies>> GetNext10Movies(bool isShow = false, int take=10, int skip=0, BaseSearchObject? search=null) //skip=length, take next 10
+        public async Task<List<Movies>> GetTop10(bool isShow = false) 
         {
-            //optimizovanije jer se samo 10 filmova vraca
-
             var query = _context.Movies.AsQueryable();
 
-            if (isShow == false) {
-                query.Where(x => x.IsShow == false);
-            } else query.Where(x => x.IsShow == true);
+            query =query.Where(x => x.IsShow == isShow);
 
             query =
                query.Include(x => x.MovieRatings)
            .Include(x => x.MovieActors).ThenInclude(x => x.Actor);
-
-
-            if(search?.FTS!=null && search?.FTS.Length >= 2) {
-                query = query.Where(x => x.Title.Contains(search.FTS) || x.Description.Contains(search.FTS));         
-            }
-
-            query=query.OrderByDescending(x => x.MovieRatings.Average(r => r.Rate)).Skip(skip)
-            .Take(take);
+    
+            query=query.OrderByDescending(x=>x.AverageRate).Skip(0)
+            .Take(10);
 
             var list= await query.ToListAsync();
+
+            //foreach(var movie in list)
+            //{
+            //    movie.AverageRate = Math.Round((decimal)_context.MovieRatings.Where(x => x.MovieId == movie.MovieId).Select(x => x.Rate).Average(),2);
+            //}
 
             var tmp = _mapper.Map<List<Movies>>(list);
 
@@ -51,11 +46,30 @@ namespace MRE.Services
 
         }
 
+        public override IQueryable<Movie> AddFilter(IQueryable<Movie> query, MovieSearchObject? search = null)
+        {
+            query = query.Where(x => x.IsShow == search.isShow);
+            query = query.OrderByDescending(x => x.AverageRate);
 
-        public override IQueryable<Movie> AddInclude(IQueryable<Movie> query, BaseSearchObject? search = null)
+            if (search?.FTS != null)
+            {
+                query = query.Where(x =>
+                         x.Title.Contains(search.FTS) ||
+                         x.Description.Contains(search.FTS) ||
+                         x.MovieActors.Any(ma =>
+                             ma.Actor.FirstName.Contains(search.FTS) ||
+                             ma.Actor.LastName.Contains(search.FTS)
+                         )
+                     );
+            }
+
+            return base.AddFilter(query, search);
+        }
+
+        public override IQueryable<Movie> AddInclude(IQueryable<Movie> query, MovieSearchObject? search = null)
         {
             query = query.Include(x => x.MovieRatings);
-            query = query.Include(x => x.MovieActors);
+            query = query.Include(x => x.MovieActors).ThenInclude(x=>x.Actor);
             return base.AddInclude(query, search);
         }
 
@@ -63,9 +77,9 @@ namespace MRE.Services
         public override async Task<Movie> AddIncludeForGetById(IQueryable<Movie> query, int id)
         {
             query = query.Include(x => x.MovieRatings);
-            query = query.Include(x => x.MovieActors);
+            query = query.Include(x => x.MovieActors).ThenInclude(x => x.Actor); 
             var entity = await query.FirstOrDefaultAsync(x => x.MovieId == id);
-            entity.AverageRate = (decimal)_context.MovieRatings.Where(x => x.MovieId == id).Select(x => x.Rate).Average();
+            entity.AverageRate = Math.Round((decimal)_context.MovieRatings.Where(x => x.MovieId == id).Select(x => x.Rate).Average(),2);
             return entity;
 
         }
