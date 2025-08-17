@@ -104,7 +104,7 @@ const HomePage = () => {
     console.log("new search value:", newValue.length);
     console.log("search", search.length);
 
-    if (newValue.length >=2 && newValue.trim() !== "") {
+    if (newValue.length >= 2 && newValue.trim() !== "") {
       console.log("isChecked", isChecked);
       fetchFilteredMovies(newValue.trim(), isChecked, 0, pageSize);
     }
@@ -142,6 +142,9 @@ const HomePage = () => {
         console.log("Response:", data);
 
         showNotification("Rated successfully!");
+
+        //refresh the list
+        search.length <= 1 && search.trim() == "" ? fetchDefaultTop10(isChecked) : fetchFilteredMovies(search, isChecked, 0, pageSize)
       } catch (err) {
         setError(err.message);
       }
@@ -152,7 +155,7 @@ const HomePage = () => {
   const handleChange = (event) => {
     setIsChecked(event.target.checked);
     console.log("Switch is now:", event.target.checked);
-    if (search.length<=1 && search.trim() == "")
+    if (search.length <= 1 && search.trim() == "")
       fetchDefaultTop10(event.target.checked);
     else fetchFilteredMovies(search, event.target.checked, 0, pageSize);
 
@@ -231,7 +234,7 @@ const HomePage = () => {
 
 
         <div className="grid-movies-shows">
-          {(search.length>=2 && search.trim()!="" ? filteredMovies : movies).map((movie) => (
+          {(search.length >= 2 && search.trim() != "" ? filteredMovies : movies).map((movie) => (
 
             <div className="movie-card"
               key={movie.movieId} onClick={() => setSelectedMovie(movie)}>
@@ -268,7 +271,7 @@ const HomePage = () => {
               },
 
             }}
-              onClick={() => { setCurrentPage(currentPage + 1); fetchFilteredMovies(search, isChecked, currentPage + 1, pageSize) }}
+              onClick={() => { setCurrentPage(currentPage + 1); console.log(currentPage+1); fetchFilteredMovies(search, isChecked, currentPage + 1, pageSize) }}
             >View more results</Button>
           </Box>
         }
@@ -338,8 +341,9 @@ const HomePage = () => {
               defaultValue={0}
             />
 
-            <button className="btnRate" disabled={rateValue == null} onClick={() => { rateMovie(selectedMovie.movieId, rateValue); setSelectedMovie(""); setRateValue(null); 
-             search.length<=1 && search.trim()==""? fetchDefaultTop10(isChecked) : fetchFilteredMovies(search, isChecked, 0, pageSize)
+            <button className="btnRate" disabled={rateValue == null} onClick={() => {
+              rateMovie(selectedMovie.movieId, rateValue); setSelectedMovie(""); setRateValue(null);
+
             }}>Rate</button>
 
           </div>
