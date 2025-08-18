@@ -60,7 +60,8 @@ const HomePage = () => {
     setError("");
     setPageSize(pageSize);
 
-    console.log("fts", fts);
+    console.log("fts: ", fts);
+    console.log("is show: ", isShow);
 
     var url = `http://localhost:5208/api/Movies?FTS=${fts}&isShow=${isShow}&Page=${page}&PageSize=${pageSize}`
     try {
@@ -112,20 +113,11 @@ const HomePage = () => {
       console.log("isChecked", isChecked);
       fetchFilteredMovies(newValue.trim(), isChecked, 0, pageSize);
     }
-    if (newValue.length == 0) {
+    if (newValue.length <2) {
+      fetchDefaultTop10(isChecked);
       setFilteredMovies([]);
       console.log("filteredMovies when the search is 0", filteredMovies);
     }
-  };
-
-
-  const viewMore = () => {
-    console.log("view more: ", filteredMoviesCurrentLength, filteredMoviesTotalLenght);
-    if (filteredMoviesCurrentLength >= filteredMoviesTotalLenght) {
-      setFilteredMovies([]);
-      console.log("filteredMovies viewMore", filteredMovies);
-    }
-
   };
 
   useEffect(() => {
@@ -173,6 +165,7 @@ const HomePage = () => {
   const handleChange = (event) => {
     setIsChecked(event.target.checked);
     console.log("Switch is now:", event.target.checked);
+    setCurrentPage(0); //kada se mijenja switch, treba se setovati i current page 
     if (search.length <= 1 && search.trim() == "")
       fetchDefaultTop10(event.target.checked);
     else fetchFilteredMovies(search, event.target.checked, 0, pageSize);
@@ -294,7 +287,7 @@ const HomePage = () => {
                   color: "white",
                 },
               }}
-                onClick={() => { setCurrentPage(currentPage + 1); console.log(currentPage + 1); fetchFilteredMovies(search, isChecked, currentPage + 1, pageSize); viewMore(); }}
+                onClick={() => { setCurrentPage(currentPage + 1); console.log(currentPage); fetchFilteredMovies(search, isChecked, currentPage+1, pageSize);}}
               >View more results</Button>
             </Box>
           }

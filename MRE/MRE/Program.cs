@@ -539,7 +539,12 @@ using (var scope = app.Services.CreateScope())
 
             // Inception
             new MovieActor { MovieId = movie20.MovieId, ActorId = actor1.ActorId },  // Leonardo DiCaprio
-            new MovieActor { MovieId = movie20.MovieId, ActorId = actor15.ActorId }  // Anne Hathaway (filler)
+            new MovieActor { MovieId = movie20.MovieId, ActorId = actor15.ActorId },  // Anne Hathaway (filler)
+
+            new MovieActor { MovieId = movie2.MovieId, ActorId = actor11.ActorId }, // Denzel Washington also in Shawshank Redemption
+            new MovieActor { MovieId = movie3.MovieId, ActorId = actor16.ActorId }, // Johnny Depp also in Fight Club
+            new MovieActor { MovieId = movie4.MovieId, ActorId = actor18.ActorId }, // Margot Robbie also in Black Swan
+            new MovieActor { MovieId = movie5.MovieId, ActorId = actor20.ActorId }  // Jennifer Lawrence also in The Matrix
         );
 
         dataContext.SaveChanges();
