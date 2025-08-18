@@ -171,20 +171,24 @@ namespace MRE.Services
                         }
                     }
 
+                    var query2 = query;
+
                     // Apply filter
                     switch (funcResult.function)
                     {
-                        case 1: query = FilterExactStars(query, funcResult.parameter); break;
-                        case 2: query = FilterXStarsOrMore(query, funcResult.parameter); break;
-                        case 3: query = FilterXStarsOrLess(query, funcResult.parameter); break;
-                        case 4: query = FilterOlderThanXYears(query, funcResult.parameter); break;
-                        case 5: query = FilterAfterXYear(query, funcResult.parameter); break;
-                        case 6: query = FilterBeforeXYear(query, funcResult.parameter); break;
-                        case 7: query = FilterExactXYear(query, funcResult.parameter); break;
-                        case 8: query = FilterRecentMovies(query); break;
-                        case 9: query = FilterPopularMovies(query); break;
+                        case 1: query2 = FilterExactStars(query, funcResult.parameter); break;
+                        case 2: query2 = FilterXStarsOrMore(query, funcResult.parameter); break;
+                        case 3: query2 = FilterXStarsOrLess(query, funcResult.parameter); break;
+                        case 4: query2 = FilterOlderThanXYears(query, funcResult.parameter); break;
+                        case 5: query2 = FilterAfterXYear(query, funcResult.parameter); break;
+                        case 6: query2 = FilterBeforeXYear(query, funcResult.parameter); break;
+                        case 7: query2 = FilterExactXYear(query, funcResult.parameter); break;
+                        case 8: query2 = FilterRecentMovies(query); break;
+                        case 9: query2 = FilterPopularMovies(query); break;
                         default: break; // 0,0 or unrecognized
                     }
+
+                    if (query2.Count() != 0) query = query2;
                 }
             }
 

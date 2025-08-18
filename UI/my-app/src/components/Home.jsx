@@ -113,7 +113,7 @@ const HomePage = () => {
       console.log("isChecked", isChecked);
       fetchFilteredMovies(newValue.trim(), isChecked, 0, pageSize);
     }
-    if (newValue.length <2) {
+    if (newValue.length < 2) {
       fetchDefaultTop10(isChecked);
       setFilteredMovies([]);
       console.log("filteredMovies when the search is 0", filteredMovies);
@@ -244,7 +244,7 @@ const HomePage = () => {
         </div>
 
         <div>
-          {filteredMoviesTotalLenght == totalCountBeforeFilter && search.length > 1 &&
+          {search.length > 1 && (filteredMoviesTotalLenght == totalCountBeforeFilter || filteredMoviesTotalLenght == 0) &&
             <div style={{
               marginBottom: "1rem", backgroundColor: "#f8d7da", color: "#721c24",
               padding: "10px",
@@ -287,7 +287,7 @@ const HomePage = () => {
                   color: "white",
                 },
               }}
-                onClick={() => { setCurrentPage(currentPage + 1); console.log(currentPage); fetchFilteredMovies(search, isChecked, currentPage+1, pageSize);}}
+                onClick={() => { setCurrentPage(currentPage + 1); console.log(currentPage); fetchFilteredMovies(search, isChecked, currentPage + 1, pageSize); }}
               >View more results</Button>
             </Box>
           }
