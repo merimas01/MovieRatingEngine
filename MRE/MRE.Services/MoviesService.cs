@@ -62,6 +62,16 @@ namespace MRE.Services
             query = query.Where(x => x.AverageRate <= (decimal)stars);
             return query;
         }
+        public IQueryable<Movie> FilterLessThanXStars(IQueryable<Movie> query, int stars)
+        {
+            query = query.Where(x => x.AverageRate < (decimal)stars);
+            return query;
+        }
+        public IQueryable<Movie> FilterMoreThanXStars(IQueryable<Movie> query, int stars)
+        {
+            query = query.Where(x => x.AverageRate > (decimal)stars);
+            return query;
+        }
         public IQueryable<Movie> FilterOlderThanXYears(IQueryable<Movie> query, int years)
         {
             var year = DateTime.Now.Year - years; 
@@ -145,12 +155,14 @@ namespace MRE.Services
                           1 = exact X stars
                           2 = at least X stars
                           3 = at most X stars
-                          4 = older than X years
-                          5 = after year X
-                          6 = before year X
-                          7 = in exact year X
-                          8 = recent movies
-                          9 = popular or most watched movies
+                          4 = less than X stars
+                          5 = more than X stars
+                          6 = older than X years
+                          7 = after year X
+                          8 = before year X
+                          9 = in exact year X
+                          10 = recent movies
+                          11 = popular or most watched movies
                         Your response should be in this format: 'function,parameter'. Example: '1,3'. If no match: '0,0'.");
 
                         var result = completion.Content[0].Text.Trim();
@@ -179,12 +191,14 @@ namespace MRE.Services
                         case 1: query2 = FilterExactStars(query, funcResult.parameter); break;
                         case 2: query2 = FilterXStarsOrMore(query, funcResult.parameter); break;
                         case 3: query2 = FilterXStarsOrLess(query, funcResult.parameter); break;
-                        case 4: query2 = FilterOlderThanXYears(query, funcResult.parameter); break;
-                        case 5: query2 = FilterAfterXYear(query, funcResult.parameter); break;
-                        case 6: query2 = FilterBeforeXYear(query, funcResult.parameter); break;
-                        case 7: query2 = FilterExactXYear(query, funcResult.parameter); break;
-                        case 8: query2 = FilterRecentMovies(query); break;
-                        case 9: query2 = FilterPopularMovies(query); break;
+                        case 4: query2 = FilterLessThanXStars(query, funcResult.parameter); break;
+                        case 5: query2 = FilterMoreThanXStars(query, funcResult.parameter); break;
+                        case 6: query2 = FilterOlderThanXYears(query, funcResult.parameter); break;
+                        case 7: query2 = FilterAfterXYear(query, funcResult.parameter); break;
+                        case 8: query2 = FilterBeforeXYear(query, funcResult.parameter); break;
+                        case 9: query2 = FilterExactXYear(query, funcResult.parameter); break;
+                        case 10: query2 = FilterRecentMovies(query); break;
+                        case 11: query2 = FilterPopularMovies(query); break;
                         default: break; // 0,0 or unrecognized
                     }
 

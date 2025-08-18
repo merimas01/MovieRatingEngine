@@ -18,7 +18,7 @@ namespace MRE.Services
         {
         }
 
-        public override async Task BeforeInsert(MovieRating entity, MovieRatingsInsertRequest insert)
+        public override async Task AfterInsert(MovieRating entity, MovieRatingsInsertRequest insert)
         {
             var movie = await _context.Movies.FirstOrDefaultAsync(x => entity.MovieId == x.MovieId);
             if (movie != null)
