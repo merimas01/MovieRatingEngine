@@ -9,7 +9,8 @@ namespace MRE.Models
     public class PagedResult<T>
     {
         public List<T> Result { get; set; }
-        public int? Count { get; set; }
-        public int? CurrentCount { get; set; }
+        public int? Count { get; set; } //count of filtered results
+        public int? CurrentCount { get; set; } 
+        public int? TotalCountBeforeFilter { get; set; }
     }
 }

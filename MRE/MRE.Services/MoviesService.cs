@@ -86,6 +86,7 @@ namespace MRE.Services
         public IQueryable<Movie> FilterRecentMovies(IQueryable<Movie> query)
         {
             query = query.Where(x => x.ReleaseDate.Year == DateTime.Now.Year);
+            //currently in the database there is no recent movies
             return query;
         }
         public IQueryable<Movie> FilterPopularMovies(IQueryable<Movie> query)
@@ -99,11 +100,15 @@ namespace MRE.Services
             = new Dictionary<string, (int, int)>();
 
 
-        public override IQueryable<Movie> AddFilter(IQueryable<Movie> query, MovieSearchObject? search = null)
+        public override IQueryable<Movie> BeforeFilter(IQueryable<Movie> query, MovieSearchObject? search = null)
         {
             query = query.Where(x => x.IsShow == search.isShow);
             query = query.OrderByDescending(x => x.AverageRate);
+            return base.BeforeFilter(query, search);
+        }
 
+        public override IQueryable<Movie> AddFilter(IQueryable<Movie> query, MovieSearchObject? search = null)
+        {
             if (!string.IsNullOrWhiteSpace(search?.FTS))
             {
                 // Basic text search
@@ -143,9 +148,9 @@ namespace MRE.Services
                           4 = older than X years
                           5 = after year X
                           6 = before year X
-                          7 = exact year X
+                          7 = in exact year X
                           8 = recent movies
-                          9 = popular movies
+                          9 = popular or most watched movies
                         Your response should be in this format: 'function,parameter'. Example: '1,3'. If no match: '0,0'.");
 
                         var result = completion.Content[0].Text.Trim();

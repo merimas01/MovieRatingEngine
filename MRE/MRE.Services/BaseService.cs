@@ -32,6 +32,10 @@ namespace MRE.Services
 
             query = AddInclude(query, search);
 
+            query = BeforeFilter(query, search);
+
+            result.TotalCountBeforeFilter = await query.CountAsync();
+
             query = AddFilter(query, search);
 
             result.Count = await query.CountAsync();
@@ -51,6 +55,11 @@ namespace MRE.Services
             result.Result = tmp;
 
             return result;
+        }
+
+        public virtual IQueryable<TDb> BeforeFilter(IQueryable<TDb> query, TSearch? search = null)
+        {
+            return query;
         }
 
         public virtual IQueryable<TDb> AddInclude(IQueryable<TDb> query, TSearch? search = null)

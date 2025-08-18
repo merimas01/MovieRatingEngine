@@ -196,42 +196,119 @@ using (var scope = app.Services.CreateScope())
         string path7 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\titanic.png";
         byte[] titanic = File.ReadAllBytes(path7);
 
+        string path8 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\avengers.jpg";
+        byte[] avengers = File.ReadAllBytes(path8);
+
+        string path9 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\barbie.jpg";
+        byte[] barbie = File.ReadAllBytes(path9);
+
+        string path10 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\darkknight.jpg";
+        byte[] darkknight = File.ReadAllBytes(path10);
+
+        string path11 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\hungergames.jpg";
+        byte[] hungergames = File.ReadAllBytes(path11);
+
+        string path12 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\ironman.jpg";
+        byte[] ironman = File.ReadAllBytes(path12);
+
+        string path13 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\lesmiserables.jpg";
+        byte[] lesmiserables = File.ReadAllBytes(path13);
+
+        string path14 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\logan.jpeg";
+        byte[] logan = File.ReadAllBytes(path14);
+
+        string path15 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\martian.jpg";
+        byte[] martian = File.ReadAllBytes(path15);
+
+        string path16 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\pirates.png";
+        byte[] pirates = File.ReadAllBytes(path16);
+
+        string path17 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\thor.jpeg";
+        byte[] thor = File.ReadAllBytes(path17);
+
+        string path18 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\training.jpg";
+        byte[] training = File.ReadAllBytes(path18);
+
+        string path19 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\wonderwoman.jpg";
+        byte[] wonderwoman = File.ReadAllBytes(path19);
+
+        string path20 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\matrix.jpg";
+        byte[] matrix = File.ReadAllBytes(path20);
+
         string showFilePath = @"C:\Users\Korisnik\Desktop\diplomski\logo\fit.jpg";
         byte[] showImageBytes = File.ReadAllBytes(showFilePath);
+
+        string spath1 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\breakingbad.jpg";
+        byte[] breakingbad = File.ReadAllBytes(spath1);
+
+        string spath2 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\goh.jpg";
+        byte[] goh = File.ReadAllBytes(spath2);
+
+        string spath3 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\strangerthings.jpg";
+        byte[] strangerthings = File.ReadAllBytes(spath3);
+
+        string spath4 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\friends.jpg";
+        byte[] friends = File.ReadAllBytes(spath4);
+
+        string spath5 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\office.jpg";
+        byte[] office = File.ReadAllBytes(spath5);
+
+        string spath6 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\scandal.jpg";
+        byte[] scandal = File.ReadAllBytes(spath6);
+
+        string spath7 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\mandalorian.jpg";
+        byte[] mandalorian = File.ReadAllBytes(spath7);
+
+        string spath8 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\xfiles.jpg";
+        byte[] xfiles = File.ReadAllBytes(spath8);
+
+        string spath9 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\houseofcards.jpg";
+        byte[] houseofcards = File.ReadAllBytes(spath9);
+
+        string spath10 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\sopranos.jpg";
+        byte[] sopranos = File.ReadAllBytes(spath10);
+
+        string spath11 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\greysanatomy.jpg";
+        byte[] greysanatomy = File.ReadAllBytes(spath11);
+
+        string spath12 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\himym.jpg";
+        byte[] himym = File.ReadAllBytes(spath12);
+
+
 
         var movie1 = new Movie { Title = "Titanic", CoverImage = titanic, Description = "A romance on the doomed RMS Titanic.", IsShow = false, ReleaseDate = new DateTime(1997, 12, 19), AverageRate = 4.5m };
         var movie2 = new Movie { Title = "The Shawshank Redemption", CoverImage = shawshank, Description = "Two imprisoned men bond over years.", IsShow = false, ReleaseDate = new DateTime(1994, 9, 23), AverageRate = 4.0m };
         var movie3 = new Movie { Title = "Fight Club", CoverImage = fightclub, Description = "An underground fight club becomes more.", IsShow = false, ReleaseDate = new DateTime(1999, 10, 15), AverageRate = 3.0m };
         var movie4 = new Movie { Title = "Black Swan", CoverImage = blackswan, Description = "A dancer loses herself in the role.", IsShow = false, ReleaseDate = new DateTime(2010, 12, 3), AverageRate = 4.0m };
-        var movie5 = new Movie { Title = "The Matrix", CoverImage = imageBytes, Description = "A hacker learns the truth about reality.", IsShow = false, ReleaseDate = new DateTime(1999, 3, 31), AverageRate = 3.0m };
+        var movie5 = new Movie { Title = "The Matrix", CoverImage = matrix, Description = "A hacker learns the truth about reality.", IsShow = false, ReleaseDate = new DateTime(1999, 3, 31), AverageRate = 3.0m };
         var movie6 = new Movie { Title = "Forrest Gump", CoverImage = forestgump, Description = "A slow-witted man experiences history.", IsShow = false, ReleaseDate = new DateTime(1994, 7, 6), AverageRate = 3.0m };
         var movie7 = new Movie { Title = "La La Land", CoverImage = lalaland, Description = "A romance between a jazz pianist and an actress.", IsShow = false, ReleaseDate = new DateTime(2016, 12, 9), AverageRate = 3.5m };
-        var movie8 = new Movie { Title = "Iron Man", CoverImage = imageBytes, Description = "A billionaire becomes a superhero.", IsShow = false, ReleaseDate = new DateTime(2008, 5, 2), AverageRate = 3.5m };
-        var movie9 = new Movie { Title = "Avengers: Endgame", CoverImage = imageBytes, Description = "The Avengers fight to undo Thanos' actions.", IsShow = false, ReleaseDate = new DateTime(2019, 4, 26), AverageRate = 3.5m };
-        var movie10 = new Movie { Title = "Training Day", CoverImage = imageBytes, Description = "A rookie cop's first day with a corrupt detective.", IsShow = false, ReleaseDate = new DateTime(2001, 10, 5), AverageRate = 2.0m };
-        var movie11 = new Movie { Title = "Thor: Ragnarok", CoverImage = imageBytes, Description = "Thor fights to save Asgard from Hela.", IsShow = false, ReleaseDate = new DateTime(2017, 11, 3), AverageRate = 3.5m };
-        var movie12 = new Movie { Title = "Wonder Woman", CoverImage = imageBytes, Description = "An Amazon princess becomes a hero.", IsShow = false, ReleaseDate = new DateTime(2017, 6, 2), AverageRate = 3.5m };
-        var movie13 = new Movie { Title = "Logan", CoverImage = imageBytes, Description = "An aging Wolverine cares for ailing Professor X.", IsShow = false, ReleaseDate = new DateTime(2017, 3, 3), AverageRate = 4.5m };
-        var movie14 = new Movie { Title = "Les Misérables", CoverImage = imageBytes, Description = "A man is hunted for decades in post-revolution France.", IsShow = false, ReleaseDate = new DateTime(2012, 12, 25), AverageRate = 2.5m };
-        var movie15 = new Movie { Title = "Pirates of the Caribbean", CoverImage = imageBytes, Description = "A pirate seeks the cursed treasure.", IsShow = false, ReleaseDate = new DateTime(2003, 7, 9), AverageRate = 2.5m };
-        var movie16 = new Movie { Title = "The Dark Knight", CoverImage = imageBytes, Description = "Batman faces the Joker.", IsShow = false, ReleaseDate = new DateTime(2008, 7, 18), AverageRate = 5.0m };
-        var movie17 = new Movie { Title = "Barbie", CoverImage = imageBytes, Description = "Barbie ventures into the real world.", IsShow = false, ReleaseDate = new DateTime(2023, 7, 21), AverageRate = 2.5m };
-        var movie18 = new Movie { Title = "The Martian", CoverImage = imageBytes, Description = "An astronaut is stranded on Mars.", IsShow = false, ReleaseDate = new DateTime(2015, 10, 2), AverageRate = 3.5m };
-        var movie19 = new Movie { Title = "The Hunger Games", CoverImage = imageBytes, Description = "A girl fights for survival in a deadly game.", IsShow = false, ReleaseDate = new DateTime(2012, 3, 23), AverageRate = 2.5m };
+        var movie8 = new Movie { Title = "Iron Man", CoverImage = ironman, Description = "A billionaire becomes a superhero.", IsShow = false, ReleaseDate = new DateTime(2008, 5, 2), AverageRate = 3.5m };
+        var movie9 = new Movie { Title = "Avengers: Endgame", CoverImage = avengers, Description = "The Avengers fight to undo Thanos' actions.", IsShow = false, ReleaseDate = new DateTime(2019, 4, 26), AverageRate = 3.5m };
+        var movie10 = new Movie { Title = "Training Day", CoverImage = training, Description = "A rookie cop's first day with a corrupt detective.", IsShow = false, ReleaseDate = new DateTime(2001, 10, 5), AverageRate = 2.0m };
+        var movie11 = new Movie { Title = "Thor: Ragnarok", CoverImage = thor, Description = "Thor fights to save Asgard from Hela.", IsShow = false, ReleaseDate = new DateTime(2017, 11, 3), AverageRate = 3.5m };
+        var movie12 = new Movie { Title = "Wonder Woman", CoverImage = wonderwoman, Description = "An Amazon princess becomes a hero.", IsShow = false, ReleaseDate = new DateTime(2017, 6, 2), AverageRate = 3.5m };
+        var movie13 = new Movie { Title = "Logan", CoverImage = logan, Description = "An aging Wolverine cares for ailing Professor X.", IsShow = false, ReleaseDate = new DateTime(2017, 3, 3), AverageRate = 4.5m };
+        var movie14 = new Movie { Title = "Les Misérables", CoverImage = lesmiserables, Description = "A man is hunted for decades in post-revolution France.", IsShow = false, ReleaseDate = new DateTime(2012, 12, 25), AverageRate = 2.5m };
+        var movie15 = new Movie { Title = "Pirates of the Caribbean", CoverImage = pirates, Description = "A pirate seeks the cursed treasure.", IsShow = false, ReleaseDate = new DateTime(2003, 7, 9), AverageRate = 2.5m };
+        var movie16 = new Movie { Title = "The Dark Knight", CoverImage = darkknight, Description = "Batman faces the Joker.", IsShow = false, ReleaseDate = new DateTime(2008, 7, 18), AverageRate = 5.0m };
+        var movie17 = new Movie { Title = "Barbie", CoverImage = barbie, Description = "Barbie ventures into the real world.", IsShow = false, ReleaseDate = new DateTime(2023, 7, 21), AverageRate = 2.5m };
+        var movie18 = new Movie { Title = "The Martian", CoverImage = martian, Description = "An astronaut is stranded on Mars.", IsShow = false, ReleaseDate = new DateTime(2015, 10, 2), AverageRate = 3.5m };
+        var movie19 = new Movie { Title = "The Hunger Games", CoverImage = hungergames, Description = "A girl fights for survival in a deadly game.", IsShow = false, ReleaseDate = new DateTime(2012, 3, 23), AverageRate = 2.5m };
         var movie20 = new Movie { Title = "Inception", CoverImage = inception, Description = "A thief steals secrets through dreams.", IsShow = false, ReleaseDate = new DateTime(2010, 7, 16), AverageRate = 3.0m };
 
-        var show1 = new Movie { Title = "Breaking Bad", CoverImage = showImageBytes, Description = "A chemistry teacher becomes a meth producer.", IsShow = true, ReleaseDate = new DateTime(2008, 1, 20), AverageRate = 4.5m };
-        var show2 = new Movie { Title = "Game of Thrones", CoverImage = showImageBytes, Description = "Noble families fight for control of the Iron Throne.", IsShow = true, ReleaseDate = new DateTime(2011, 4, 17), AverageRate = 4.0m };
-        var show3 = new Movie { Title = "Stranger Things", CoverImage = showImageBytes, Description = "Kids uncover supernatural mysteries in Hawkins.", IsShow = true, ReleaseDate = new DateTime(2016, 7, 15), AverageRate = 3.0m };
-        var show4 = new Movie { Title = "Friends", CoverImage = showImageBytes, Description = "Six friends navigate life in New York City.", IsShow = true, ReleaseDate = new DateTime(1994, 9, 22), AverageRate = 4.5m };
-        var show5 = new Movie { Title = "The Office", CoverImage = showImageBytes, Description = "A mockumentary about office employees.", IsShow = true, ReleaseDate = new DateTime(2005, 3, 24), AverageRate = 3.5m };
-        var show6 = new Movie { Title = "Scandal", CoverImage = showImageBytes, Description = "A crisis management expert saves political careers.", IsShow = true, ReleaseDate = new DateTime(2012, 4, 5), AverageRate = 2.5m };
-        var show7 = new Movie { Title = "The Mandalorian", CoverImage = showImageBytes, Description = "A lone bounty hunter protects a mysterious child.", IsShow = true, ReleaseDate = new DateTime(2019, 11, 12), AverageRate = 4.5m };
-        var show8 = new Movie { Title = "The X-Files", CoverImage = showImageBytes, Description = "FBI agents investigate paranormal cases.", IsShow = true, ReleaseDate = new DateTime(1993, 9, 10), AverageRate = 3.0m };
-        var show9 = new Movie { Title = "The Sopranos", CoverImage = showImageBytes, Description = "A mob boss balances family and crime.", IsShow = true, ReleaseDate = new DateTime(1999, 1, 10), AverageRate = 4.0m };
-        var show10 = new Movie { Title = "House of Cards", CoverImage = showImageBytes, Description = "A politician rises to power in Washington.", IsShow = true, ReleaseDate = new DateTime(2013, 2, 1), AverageRate = 3.0m };
-        var show11 = new Movie { Title = "Grey's Anatomy", CoverImage = showImageBytes, Description = "Doctors face challenges in a Seattle hospital.", IsShow = true, ReleaseDate = new DateTime(2005, 3, 27), AverageRate = 3.5m };
-        var show12 = new Movie { Title = "How I Met Your Mother", CoverImage = showImageBytes, Description = "A man recounts how he met the mother of his children.", IsShow = true, ReleaseDate = new DateTime(2005, 9, 19), AverageRate = 4.5m };
+        var show1 = new Movie { Title = "Breaking Bad", CoverImage = breakingbad, Description = "A chemistry teacher becomes a meth producer.", IsShow = true, ReleaseDate = new DateTime(2008, 1, 20), AverageRate = 4.5m };
+        var show2 = new Movie { Title = "Game of Thrones", CoverImage = goh, Description = "Noble families fight for control of the Iron Throne.", IsShow = true, ReleaseDate = new DateTime(2011, 4, 17), AverageRate = 4.0m };
+        var show3 = new Movie { Title = "Stranger Things", CoverImage = strangerthings, Description = "Kids uncover supernatural mysteries in Hawkins.", IsShow = true, ReleaseDate = new DateTime(2016, 7, 15), AverageRate = 3.0m };
+        var show4 = new Movie { Title = "Friends", CoverImage = friends, Description = "Six friends navigate life in New York City.", IsShow = true, ReleaseDate = new DateTime(1994, 9, 22), AverageRate = 4.5m };
+        var show5 = new Movie { Title = "The Office", CoverImage = office, Description = "A mockumentary about office employees.", IsShow = true, ReleaseDate = new DateTime(2005, 3, 24), AverageRate = 3.5m };
+        var show6 = new Movie { Title = "Scandal", CoverImage = scandal, Description = "A crisis management expert saves political careers.", IsShow = true, ReleaseDate = new DateTime(2012, 4, 5), AverageRate = 2.5m };
+        var show7 = new Movie { Title = "The Mandalorian", CoverImage = mandalorian, Description = "A lone bounty hunter protects a mysterious child.", IsShow = true, ReleaseDate = new DateTime(2019, 11, 12), AverageRate = 4.5m };
+        var show8 = new Movie { Title = "The X-Files", CoverImage = xfiles, Description = "FBI agents investigate paranormal cases.", IsShow = true, ReleaseDate = new DateTime(1993, 9, 10), AverageRate = 3.0m };
+        var show9 = new Movie { Title = "The Sopranos", CoverImage = sopranos, Description = "A mob boss balances family and crime.", IsShow = true, ReleaseDate = new DateTime(1999, 1, 10), AverageRate = 4.0m };
+        var show10 = new Movie { Title = "House of Cards", CoverImage = houseofcards, Description = "A politician rises to power in Washington.", IsShow = true, ReleaseDate = new DateTime(2013, 2, 1), AverageRate = 3.0m };
+        var show11 = new Movie { Title = "Grey's Anatomy", CoverImage = greysanatomy, Description = "Doctors face challenges in a Seattle hospital.", IsShow = true, ReleaseDate = new DateTime(2005, 3, 27), AverageRate = 3.5m };
+        var show12 = new Movie { Title = "How I Met Your Mother", CoverImage = himym, Description = "A man recounts how he met the mother of his children.", IsShow = true, ReleaseDate = new DateTime(2005, 9, 19), AverageRate = 4.5m };
         var show13 = new Movie { Title = "Westworld", CoverImage = showImageBytes, Description = "Humans interact with androids in a theme park.", IsShow = true, ReleaseDate = new DateTime(2016, 10, 2), AverageRate = 3.5m };
         var show14 = new Movie { Title = "The Crown", CoverImage = showImageBytes, Description = "The reign of Queen Elizabeth II.", IsShow = true, ReleaseDate = new DateTime(2016, 11, 4), AverageRate = 4.5m };
         var show15 = new Movie { Title = "Ozark", CoverImage = showImageBytes, Description = "A family launders money for a cartel.", IsShow = true, ReleaseDate = new DateTime(2017, 7, 21), AverageRate = 3.5m };

@@ -16,6 +16,7 @@ const HomePage = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [filteredMoviesCurrentLength, setFilteredMoviesCurrentLength] = useState(0);
   const [filteredMoviesTotalLenght, setFilteredMoviesTotalLength] = useState(0);
+  const [totalCountBeforeFilter, setTotalCountBeforeFilter] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const [error, setError] = useState("");
@@ -59,6 +60,8 @@ const HomePage = () => {
     setError("");
     setPageSize(pageSize);
 
+    console.log("fts", fts);
+
     var url = `http://localhost:5208/api/Movies?FTS=${fts}&isShow=${isShow}&Page=${page}&PageSize=${pageSize}`
     try {
       const basicAuth = btoa("test:test"); // username:password
@@ -90,6 +93,7 @@ const HomePage = () => {
 
       setFilteredMoviesCurrentLength(data.currentCount);
       setFilteredMoviesTotalLength(data.count);
+      setTotalCountBeforeFilter(data.totalCountBeforeFilter);
     } catch (err) {
       setError(err.message);
     }
@@ -108,6 +112,20 @@ const HomePage = () => {
       console.log("isChecked", isChecked);
       fetchFilteredMovies(newValue.trim(), isChecked, 0, pageSize);
     }
+    if (newValue.length == 0) {
+      setFilteredMovies([]);
+      console.log("filteredMovies when the search is 0", filteredMovies);
+    }
+  };
+
+
+  const viewMore = () => {
+    console.log("view more: ", filteredMoviesCurrentLength, filteredMoviesTotalLenght);
+    if (filteredMoviesCurrentLength >= filteredMoviesTotalLenght) {
+      setFilteredMovies([]);
+      console.log("filteredMovies viewMore", filteredMovies);
+    }
+
   };
 
   useEffect(() => {
@@ -232,56 +250,62 @@ const HomePage = () => {
           </Box>
         </div>
 
+        <div>
+          {filteredMoviesTotalLenght == totalCountBeforeFilter && search.length > 1 &&
+            <div style={{
+              marginBottom: "1rem", backgroundColor: "#f8d7da", color: "#721c24",
+              padding: "10px",
+            }}>No matches.</div>}
 
-        <div className="grid-movies-shows">
-          {(search.length >= 2 && search.trim() != "" ? filteredMovies : movies).map((movie) => (
+          <div className="grid-movies-shows" >
+            {(search.length >= 2 && search.trim() != "" ? filteredMovies : movies).map((movie, index) => (
 
-            <div className="movie-card"
-              key={movie.movieId} onClick={() => setSelectedMovie(movie)}>
-              <img
-                src={`data:image/jpeg;base64,${movie.coverImage}`}
-                alt={movie.title}
-                style={{ width: "100%", height: "300px", objectFit: "cover" }}
-              />
-              <div style={{ padding: "10px" }}>
-                <h3 style={{ margin: "0 0 5px 0" }}>{movie.title}</h3>
-                <p style={{ margin: "0 0 5px 0", fontSize: "0.9rem" }}>
-                  {movie.description}
-                </p>
-                <p style={{ margin: 0 }}>⭐ {movie.averageRate}</p>
+              <div className="movie-card"
+                key={`${movie.movieId}-${index}`} onClick={() => setSelectedMovie(movie)}>
+                <img
+                  src={movie.coverImage
+                    ? `data:image/jpeg;base64,${movie.coverImage}`
+                    : "/assets/no-image.svg"}
+                  alt={movie.title}
+                  style={{ width: "100%", height: "300px", objectFit: "cover" }}
+                />
+                <div style={{ padding: "10px" }}>
+                  <h3 style={{ margin: "0 0 5px 0" }}>{movie.title}</h3>
+                  <p style={{ margin: "0 0 5px 0", fontSize: "0.9rem" }}>
+                    {movie.description}
+                  </p>
+                  <p style={{ margin: 0 }}>⭐ {movie.averageRate}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
 
-        {/*ovo dugme se pojavi samo ako postoji paginacija, tj. vise od jedne stranice rezultata */}
-
-        {
-          filteredMovies && filteredMoviesCurrentLength < filteredMoviesTotalLenght
-          && <Box textAlign="center">
-            <Button variant="outlined" sx={{
-              borderColor: "primary.main",
-              color: "primary.main",
-              margin: "20px",
-              "&:hover": {
+          {/*ovo dugme se pojavi samo ako postoji paginacija, tj. vise od jedne stranice rezultata */}
+          {search.length > 1 && filteredMovies && filteredMoviesCurrentLength < filteredMoviesTotalLenght
+            && <Box textAlign="center">
+              <Button variant="outlined" sx={{
                 borderColor: "primary.main",
-                backgroundColor: "primary.main",
-                color: "white",
-              },
+                color: "primary.main",
+                margin: "20px",
+                "&:hover": {
+                  borderColor: "primary.main",
+                  backgroundColor: "primary.main",
+                  color: "white",
+                },
+              }}
+                onClick={() => { setCurrentPage(currentPage + 1); console.log(currentPage + 1); fetchFilteredMovies(search, isChecked, currentPage + 1, pageSize); viewMore(); }}
+              >View more results</Button>
+            </Box>
+          }
 
-            }}
-              onClick={() => { setCurrentPage(currentPage + 1); console.log(currentPage+1); fetchFilteredMovies(search, isChecked, currentPage + 1, pageSize) }}
-            >View more results</Button>
-          </Box>
-        }
-
+        </div>
         <div>
         </div>
       </div>
 
 
-
+      {/* Rating functionality */}
       {selectedMovie && (
         <div
           style={{
@@ -363,15 +387,14 @@ const HomePage = () => {
             color: "white",
             padding: "10px 20px",
             borderRadius: "8px",
-
             //boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
           }}
         >
           {notification}
         </div>
       )}
-    </>
 
+    </>
   );
 };
 
