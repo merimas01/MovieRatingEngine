@@ -3,22 +3,30 @@
 This is a web app where users can search through movies/TV shows and rate them using stars.
 Built with .NET, ReactJs and SQL Server.
 
-## Main functionalities:
+## Main characteristics:
 
-- Toggle view
+### Toggle view
 Users can toggle between Top 10 movies and Top 10 TV shows sorted by their average rate.
+<img width="1898" height="907" alt="toggle" src="https://github.com/user-attachments/assets/79f6ddad-8b5d-40c4-bdea-60924d27310a" />
 
-- Intelligent and automatic search engine
-This engine automatically activates after 2 characters are entered. It matches any textual atrribute of the movie or TV show (title, description, cast) and can intelligently parse phrases such as: "5 stars", "at least 3 stars", "after 2016", "older than 5 years" etc. Search results are also sorted by rating. 
+### Intelligent and automatic search engine
+- This engine automatically activates after 2 characters are entered. It matches any textual atrribute of the movie or TV show (title, description, cast) and can intelligently parse phrases such as: "5 stars", "at least 3 stars", "after 2016", "older than 5 years" etc. Search results are also sorted by rating. 
+<img width="1882" height="897" alt="search" src="https://github.com/user-attachments/assets/1841a70d-dbbf-4f87-9814-cdacabe7d598" />
 
 - "No matches" message
 Users are informed if no matches are found. Below the message they can see all the movies/TV shows.
+<img width="1896" height="898" alt="nomatches" src="https://github.com/user-attachments/assets/04cc5f2e-3997-4ecc-adf9-7a423f6e97d9" />
 
-- Pagination with a button "View more results"
+### Pagination with a button "View more results"
 The button loads the next 5 items when clicked.
+<img width="1900" height="900" alt="btnView" src="https://github.com/user-attachments/assets/5c908ba2-8702-42ef-b68b-202b0b90e290" />
 
-- Star rating
+### Star rating
 Users can annonymously rate movies/TV shows from 1 to 5 stars. The user gets a notification with a success message and the average rate of the movie/TV show automatically updates. Button "Rate" is enabled only when user chooses the star.
+<img width="1877" height="905" alt="rate" src="https://github.com/user-attachments/assets/ba5773b6-8404-4390-af5d-c45f98e56094" />
 
-- Responsive UI
+### Responsive UI
 Responsive behaviour on different screen sizes.
+<img width="621" height="868" alt="responsive" src="https://github.com/user-attachments/assets/e66e0d34-c65d-4d52-8525-a0a58fa57ac6" />
+
+
