@@ -59,7 +59,6 @@ builder.Services.AddAutoMapper(typeof(IMoviesService));
 builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
-
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<MovieRatingEngineContext>(options => options.UseSqlServer(connectionString));
 
@@ -171,107 +170,104 @@ using (var scope = app.Services.CreateScope())
 
         dataContext.SaveChanges();
 
+        string path1 = @"..\MRE\images\blackswan.jpg";
 
-        string filePath = @"C:\Users\Korisnik\Desktop\diplomski\logo\fit.jpg";
-        byte[] imageBytes= File.ReadAllBytes( filePath );
-
-        string path1 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\blackswan.jpg";
         byte[] blackswan = File.ReadAllBytes( path1 );
 
-        string path2 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\fightclub.jpg";
+        string path2 = @"..\MRE\images\fightclub.jpg";
         byte[] fightclub = File.ReadAllBytes(path2);
 
-        string path3 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\forestgump.jpg";
+        string path3 = @"..\MRE\images\forestgump.jpg";
         byte[] forestgump = File.ReadAllBytes(path3);
 
-        string path4 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\inception.jpg";
+        string path4 = @"..\MRE\images\inception.jpg";
         byte[] inception = File.ReadAllBytes(path4);
 
-        string path5 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\lalaland.jpg";
+        string path5 = @"..\MRE\images\lalaland.jpg";
         byte[] lalaland = File.ReadAllBytes(path5);
 
-        string path6 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\shawshank.jpg";
+        string path6 = @"..\MRE\images\shawshank.jpg";
         byte[] shawshank = File.ReadAllBytes(path6);
 
-        string path7 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\titanic.png";
+        string path7 = @"..\MRE\images\titanic.png";
         byte[] titanic = File.ReadAllBytes(path7);
 
-        string path8 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\avengers.jpg";
+        string path8 = @"..\MRE\images\avengers.jpg";
         byte[] avengers = File.ReadAllBytes(path8);
 
-        string path9 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\barbie.jpg";
+        string path9 = @"..\MRE\images\barbie.jpg";
         byte[] barbie = File.ReadAllBytes(path9);
 
-        string path10 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\darkknight.jpg";
+        string path10 = @"..\MRE\images\darkknight.jpg";
         byte[] darkknight = File.ReadAllBytes(path10);
 
-        string path11 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\hungergames.jpg";
+        string path11 = @"..\MRE\images\hungergames.jpg";
         byte[] hungergames = File.ReadAllBytes(path11);
 
-        string path12 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\ironman.jpg";
+        string path12 = @"..\MRE\images\ironman.jpg";
         byte[] ironman = File.ReadAllBytes(path12);
 
-        string path13 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\lesmiserables.jpg";
+        string path13 = @"..\MRE\images\lesmiserables.jpg";
         byte[] lesmiserables = File.ReadAllBytes(path13);
 
-        string path14 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\logan.jpeg";
+        string path14 = @"..\MRE\images\logan.jpeg";
         byte[] logan = File.ReadAllBytes(path14);
 
-        string path15 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\martian.jpg";
+        string path15 = @"..\MRE\images\martian.jpg";
         byte[] martian = File.ReadAllBytes(path15);
 
-        string path16 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\pirates.png";
+        string path16 = @"..\MRE\images\pirates.png";
         byte[] pirates = File.ReadAllBytes(path16);
 
-        string path17 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\thor.jpeg";
+        string path17 = @"..\MRE\images\thor.jpeg";
         byte[] thor = File.ReadAllBytes(path17);
 
-        string path18 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\training.jpg";
+        string path18 = @"..\MRE\images\training.jpg";
         byte[] training = File.ReadAllBytes(path18);
 
-        string path19 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\wonderwoman.jpg";
+        string path19 = @"..\MRE\images\wonderwoman.jpg";
         byte[] wonderwoman = File.ReadAllBytes(path19);
 
-        string path20 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\matrix.jpg";
+        string path20 = @"..\MRE\images\matrix.jpg";
         byte[] matrix = File.ReadAllBytes(path20);
 
-        string showFilePath = @"C:\Users\Korisnik\Desktop\diplomski\logo\fit.jpg";
+        string showFilePath = @"..\MRE\images\fit.jpg";
         byte[] showImageBytes = File.ReadAllBytes(showFilePath);
 
-        string spath1 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\breakingbad.jpg";
+        string spath1 = @"..\MRE\images\breakingbad.jpg";
         byte[] breakingbad = File.ReadAllBytes(spath1);
 
-        string spath2 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\goh.jpg";
+        string spath2 = @"..\MRE\images\goh.jpg";
         byte[] goh = File.ReadAllBytes(spath2);
 
-        string spath3 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\strangerthings.jpg";
+        string spath3 = @"..\MRE\images\strangerthings.jpg";
         byte[] strangerthings = File.ReadAllBytes(spath3);
 
-        string spath4 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\friends.jpg";
+        string spath4 = @"..\MRE\images\friends.jpg";
         byte[] friends = File.ReadAllBytes(spath4);
 
-        string spath5 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\office.jpg";
+        string spath5 = @"..\MRE\images\office.jpg";
         byte[] office = File.ReadAllBytes(spath5);
 
-        string spath6 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\scandal.jpg";
+        string spath6 = @"..\MRE\images\scandal.jpg";
         byte[] scandal = File.ReadAllBytes(spath6);
 
-        string spath7 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\mandalorian.jpg";
+        string spath7 = @"..\MRE\images\mandalorian.jpg";
         byte[] mandalorian = File.ReadAllBytes(spath7);
 
-        string spath8 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\xfiles.jpg";
+        string spath8 = @"..\MRE\images\xfiles.jpg";
         byte[] xfiles = File.ReadAllBytes(spath8);
 
-        string spath9 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\houseofcards.jpg";
+        string spath9 = @"..\MRE\images\houseofcards.jpg";
         byte[] houseofcards = File.ReadAllBytes(spath9);
 
-        string spath10 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\sopranos.jpg";
+        string spath10 = @"..\MRE\images\sopranos.jpg";
         byte[] sopranos = File.ReadAllBytes(spath10);
 
-        string spath11 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\greysanatomy.jpg";
+        string spath11 = @"..\MRE\images\greysanatomy.jpg";
         byte[] greysanatomy = File.ReadAllBytes(spath11);
 
-        string spath12 = @"C:\Users\Korisnik\Desktop\MovieRatingEngine\MovieRatingEngine\MRE\MRE\images\himym.jpg";
+        string spath12 = @"..\MRE\images\himym.jpg";
         byte[] himym = File.ReadAllBytes(spath12);
 
 
