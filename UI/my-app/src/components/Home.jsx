@@ -7,8 +7,6 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-
 
 const HomePage = () => {
 
@@ -101,7 +99,7 @@ const HomePage = () => {
   };
 
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = async (e) => {
     const newValue = e.target.value;
     setSearch(newValue);
     setCurrentPage(0);
@@ -162,7 +160,7 @@ const HomePage = () => {
   };
 
   // Function to run when switch changes
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     setIsChecked(event.target.checked);
     console.log("Switch is now:", event.target.checked);
     setCurrentPage(0); //kada se mijenja switch, treba se setovati i current page 
@@ -173,7 +171,7 @@ const HomePage = () => {
   };
 
 
-  const showNotification = (message) => {
+  const showNotification = async (message) => {
     setNotification(message);
 
     // Automatically hide after 3 seconds
@@ -248,7 +246,7 @@ const HomePage = () => {
             <div style={{
               marginBottom: "1rem", backgroundColor: "#f8d7da", color: "#721c24",
               padding: "10px",
-            }}>No matches.</div>}
+            }}>Sadly, no matches found. </div>}
 
           <div className="grid-movies-shows" >
             {(search.length >= 2 && search.trim() != "" ? filteredMovies : movies).map((movie, index) => (
@@ -330,7 +328,7 @@ const HomePage = () => {
 
             }}
           >
-            <IconButton onClick={() => setSelectedMovie("")} sx={{
+            <IconButton onClick={() => {setSelectedMovie(""); setRateValue(null);}} sx={{
               position: "absolute",
               top: "5px",
               right: "5px",

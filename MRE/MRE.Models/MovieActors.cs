@@ -10,9 +10,9 @@ namespace MRE.Models
     {
         public int MovieActorsId { get; set; }
 
-        public int? MovieId { get; set; }
+        public int MovieId { get; set; }
 
-        public int? ActorId { get; set; }
+        public int ActorId { get; set; }
 
         public virtual Actors? Actor { get; set; }
 

@@ -57,7 +57,7 @@ public partial class MovieRatingEngineContext : DbContext
 
         modelBuilder.Entity<MovieActor>(entity =>
         {
-            entity.HasKey(e => e.MovieActorsId).HasName("PK__MovieAct__71A144201FB35A3B");
+            entity.HasKey(e => e.MovieActorsId).HasName("PK__MovieAct__71A144209B90C3C6");
 
             entity.Property(e => e.MovieActorsId).HasColumnName("MovieActorsID");
             entity.Property(e => e.ActorId).HasColumnName("ActorID");
@@ -65,18 +65,20 @@ public partial class MovieRatingEngineContext : DbContext
 
             entity.HasOne(d => d.Actor).WithMany(p => p.MovieActors)
                 .HasForeignKey(d => d.ActorId)
-                .HasConstraintName("FK__MovieActo__Actor__3C69FB99");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__MovieActo__Actor__59FA5E80");
 
             entity.HasOne(d => d.Movie).WithMany(p => p.MovieActors)
                 .HasForeignKey(d => d.MovieId)
-                .HasConstraintName("FK__MovieActo__Movie__3B75D760");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__MovieActo__Movie__59063A47");
         });
 
         modelBuilder.Entity<MovieRating>(entity =>
         {
-            entity.HasKey(e => e.MovieRatingId).HasName("PK__MovieRat__AB2CC85355436010");
+            entity.HasKey(e => e.MovieRatingId).HasName("PK__MovieRat__AB2CC853B8023943");
 
-            entity.ToTable("MovieRating", tb => tb.HasTrigger("trg_UpdateAverageRate"));
+            entity.ToTable("MovieRating");
 
             entity.Property(e => e.MovieRatingId).HasColumnName("MovieRatingID");
             entity.Property(e => e.MovieId).HasColumnName("MovieID");
@@ -86,7 +88,8 @@ public partial class MovieRatingEngineContext : DbContext
 
             entity.HasOne(d => d.Movie).WithMany(p => p.MovieRatings)
                 .HasForeignKey(d => d.MovieId)
-                .HasConstraintName("FK__MovieRati__Movie__3F466844");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__MovieRati__Movie__5CD6CB2B");
         });
 
         modelBuilder.Entity<User>(entity =>

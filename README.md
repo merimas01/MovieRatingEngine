@@ -14,6 +14,7 @@ Built with .NET, ReactJs and SQL Server.
 <img width="1892" height="902" alt="search" src="https://github.com/user-attachments/assets/3cf5097c-8f91-4f69-9430-48a7cc4abec5" />
 
 - "No matches" message
+<br>
 Users are informed if no matches are found. Below the message they can see all the movies/TV shows.
 <img width="1895" height="906" alt="nomatches" src="https://github.com/user-attachments/assets/fbbe45b5-b2a2-416f-a689-90086e20db13" />
 

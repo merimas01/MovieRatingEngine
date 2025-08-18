@@ -10,7 +10,7 @@ namespace MRE.Models
     {
         public int MovieRatingId { get; set; }
 
-        public int? MovieId { get; set; }
+        public int MovieId { get; set; }
 
         public int Rate { get; set; }
 

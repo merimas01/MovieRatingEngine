@@ -11,7 +11,7 @@ namespace MRE.Models.Requests
     public class MovieRatingsInsertRequest
     {
         [Required]
-        public int? MovieId { get; set; }
+        public int MovieId { get; set; }
 
         [Required]
         [Range(1, 5)]
