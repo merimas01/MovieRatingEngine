@@ -11,7 +11,7 @@ Built with .NET, ReactJs and SQL Server.
 
 ### Intelligent and automatic search engine
 - This engine automatically activates after 2 characters are entered. It matches any textual atrribute of the movie or TV show (title, description, cast) and can intelligently parse phrases such as: "5 stars", "at least 3 stars", "after 2016", "older than 5 years" etc. Search results are also sorted by rating. 
-<img width="1882" height="897" alt="search" src="https://github.com/user-attachments/assets/1841a70d-dbbf-4f87-9814-cdacabe7d598" />
+<img width="1892" height="907" alt="search" src="https://github.com/user-attachments/assets/39bb1e6c-8652-4ded-9ce8-36237917405c" />
 
 - "No matches" message
 Users are informed if no matches are found. Below the message they can see all the movies/TV shows.
