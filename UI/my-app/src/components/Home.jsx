@@ -111,7 +111,7 @@ const HomePage = () => {
       console.log("isChecked", isChecked);
       fetchFilteredMovies(newValue.trim(), isChecked, 0, pageSize);
     }
-    if (newValue.length < 2) {
+    else{
       fetchDefaultTop10(isChecked);
       setFilteredMovies([]);
       console.log("filteredMovies when the search is 0", filteredMovies);
@@ -152,7 +152,7 @@ const HomePage = () => {
         showNotification("Rated successfully!");
 
         //refresh the list
-        search.length <= 1 && search.trim() == "" ? fetchDefaultTop10(isChecked) : fetchFilteredMovies(search, isChecked, 0, pageSize)
+        search.length <= 1 ? fetchDefaultTop10(isChecked) : fetchFilteredMovies(search, isChecked, 0, pageSize)
       } catch (err) {
         setError(err.message);
       }
@@ -162,12 +162,14 @@ const HomePage = () => {
   // Function to run when switch changes
   const handleChange = async (event) => {
     setIsChecked(event.target.checked);
+    console.log("search:", search.length);
     console.log("Switch is now:", event.target.checked);
     setCurrentPage(0); //kada se mijenja switch, treba se setovati i current page 
-    if (search.length <= 1 && search.trim() == "")
+    if (search.length <= 1) {
+      console.log("fetch default 10");
       fetchDefaultTop10(event.target.checked);
+    }
     else fetchFilteredMovies(search, event.target.checked, 0, pageSize);
-
   };
 
 
@@ -242,7 +244,7 @@ const HomePage = () => {
         </div>
 
         <div>
-          {search.length > 1 && (filteredMoviesTotalLenght == totalCountBeforeFilter || filteredMoviesTotalLenght == 0) &&
+          {search.length > 1 && search.trim()!="" && (filteredMoviesTotalLenght == 0) &&
             <div style={{
               marginBottom: "1rem", backgroundColor: "#f8d7da", color: "#721c24",
               padding: "10px",
@@ -273,7 +275,7 @@ const HomePage = () => {
 
 
           {/*ovo dugme se pojavi samo ako postoji paginacija, tj. vise od jedne stranice rezultata */}
-          {search.length > 1 && filteredMovies && filteredMoviesCurrentLength < filteredMoviesTotalLenght
+          {search.length > 1 && search.trim() != "" && filteredMovies && filteredMoviesCurrentLength < filteredMoviesTotalLenght
             && <Box textAlign="center">
               <Button variant="outlined" sx={{
                 borderColor: "primary.main",
@@ -328,7 +330,7 @@ const HomePage = () => {
 
             }}
           >
-            <IconButton onClick={() => {setSelectedMovie(""); setRateValue(null);}} sx={{
+            <IconButton onClick={() => { setSelectedMovie(""); setRateValue(null); }} sx={{
               position: "absolute",
               top: "5px",
               right: "5px",

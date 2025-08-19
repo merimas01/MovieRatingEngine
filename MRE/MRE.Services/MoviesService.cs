@@ -183,26 +183,22 @@ namespace MRE.Services
                         }
                     }
 
-                    var query2 = query;
-
                     // Apply filter
                     switch (funcResult.function)
                     {
-                        case 1: query2 = FilterExactStars(query, funcResult.parameter); break;
-                        case 2: query2 = FilterXStarsOrMore(query, funcResult.parameter); break;
-                        case 3: query2 = FilterXStarsOrLess(query, funcResult.parameter); break;
-                        case 4: query2 = FilterLessThanXStars(query, funcResult.parameter); break;
-                        case 5: query2 = FilterMoreThanXStars(query, funcResult.parameter); break;
-                        case 6: query2 = FilterOlderThanXYears(query, funcResult.parameter); break;
-                        case 7: query2 = FilterAfterXYear(query, funcResult.parameter); break;
-                        case 8: query2 = FilterBeforeXYear(query, funcResult.parameter); break;
-                        case 9: query2 = FilterExactXYear(query, funcResult.parameter); break;
-                        case 10: query2 = FilterRecentMovies(query); break;
-                        case 11: query2 = FilterPopularMovies(query); break;
-                        default: break; // 0,0 or unrecognized
+                        case 1: query = FilterExactStars(query, funcResult.parameter); break;
+                        case 2: query = FilterXStarsOrMore(query, funcResult.parameter); break;
+                        case 3: query = FilterXStarsOrLess(query, funcResult.parameter); break;
+                        case 4: query = FilterLessThanXStars(query, funcResult.parameter); break;
+                        case 5: query = FilterMoreThanXStars(query, funcResult.parameter); break;
+                        case 6: query = FilterOlderThanXYears(query, funcResult.parameter); break;
+                        case 7: query = FilterAfterXYear(query, funcResult.parameter); break;
+                        case 8: query = FilterBeforeXYear(query, funcResult.parameter); break;
+                        case 9: query = FilterExactXYear(query, funcResult.parameter); break;
+                        case 10: query = FilterRecentMovies(query); break;
+                        case 11: query = FilterPopularMovies(query); break;
+                        default: query = query.Where(x=>false); break; // 0,0 or unrecognized, no results
                     }
-
-                    if (query2.Count() != 0) query = query2;
                 }
             }
 

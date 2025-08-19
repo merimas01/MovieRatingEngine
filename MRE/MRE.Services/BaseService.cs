@@ -43,7 +43,7 @@ namespace MRE.Services
             if (search?.Page.HasValue == true && search?.PageSize.HasValue == true)
             {
                 query = query.Skip(search.Page.Value * search.PageSize.Value).Take(search.PageSize.Value);
-                result.CurrentCount = search.Page.Value * search.PageSize.Value + search.PageSize.Value;
+                result.CurrentCount = search.Page.Value * search.PageSize.Value + query.Count();
             }
             else
                 result.CurrentCount = result.Count;
