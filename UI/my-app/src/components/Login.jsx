@@ -12,7 +12,7 @@ export function Login() {
             <div
                 style={{
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: "space-evenly",
                     alignItems: "center",
                     height: "100vh", // full screen height
                 }}
@@ -28,6 +28,9 @@ export function Login() {
                     onError={() => console.log("Login failed.")}
                     auto_select={true}
                 />
+
+
+                <button style={{border:"1px", borderRadius:"10px", padding:"10px"}} onClick={()=>{navigate("/home")}}>Go to home page without authorization</button>
             </div>      
         </>
     );
