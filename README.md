@@ -36,7 +36,7 @@ Built with .NET, ReactJs and SQL Server.
 - Visual Studio Code
 - Node.js (v22.14.0)
 - Set your OpenAI API Key in Environment variable called ***API_KEY*** and restart your PC
-- Create .env file in **my-app** folder and set a variable called ***VITE_GOOGLE_CLIENT_ID*** with your OAuth2.0 ClientID
+- Optional (just for OAuth2 based authorization): Create .env file in **my-app** folder and set a variable called ***VITE_GOOGLE_CLIENT_ID*** with your OAuth2.0 ClientID
 
 ### Backend
 - Open **MRE** project in Visual Studio 2022

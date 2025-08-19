@@ -6,8 +6,8 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/home/:uniqueUserInfo" element={<HomePage />} />
-      <Route path="/home" element={<HomePage />} /> {/* if you dont use Google auth */}
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<HomePage />} /> {/* if you dont use Google auth */}
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 }

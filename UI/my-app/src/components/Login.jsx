@@ -1,4 +1,3 @@
-import { Google, Height } from "@mui/icons-material";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -9,14 +8,7 @@ export function Login() {
 
     return (
         <>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    alignItems: "center",
-                    height: "100vh", // full screen height
-                }}
-            >
+            <div>
                 <GoogleLogin
                     onSuccess={(credentialResponse) => {
                         console.log(credentialResponse);
@@ -28,10 +20,7 @@ export function Login() {
                     onError={() => console.log("Login failed.")}
                     auto_select={true}
                 />
-
-
-                <button style={{border:"1px", borderRadius:"10px", padding:"10px"}} onClick={()=>{navigate("/home")}}>Go to home page without authorization</button>
-            </div>      
+            </div>
         </>
     );
 }

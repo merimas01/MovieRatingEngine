@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
+import { useNavigate } from "react-router-dom";
+import Login from "./Login";
 
 const HomePage = () => {
 
@@ -22,6 +24,8 @@ const HomePage = () => {
   const [rateValue, setRateValue] = useState(null);
   const [notification, setNotification] = useState("");
   const [search, setSearch] = useState("");
+
+  const navigate = useNavigate();
 
   const fetchDefaultTop10 = async (isShow) => {
     setError("");
@@ -184,7 +188,7 @@ const HomePage = () => {
   return (
     <>
       <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-
+        <Login/>
         <h1 className="title">Movie Rating Engine 🎬 </h1>
 
         <div
