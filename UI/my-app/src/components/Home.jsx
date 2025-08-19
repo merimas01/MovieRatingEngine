@@ -14,7 +14,6 @@ const HomePage = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [filteredMoviesCurrentLength, setFilteredMoviesCurrentLength] = useState(0);
   const [filteredMoviesTotalLenght, setFilteredMoviesTotalLength] = useState(0);
-  const [totalCountBeforeFilter, setTotalCountBeforeFilter] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const [error, setError] = useState("");
@@ -152,7 +151,7 @@ const HomePage = () => {
         showNotification("Rated successfully!");
 
         //refresh the list
-        search.length <= 1 ? fetchDefaultTop10(isChecked) : fetchFilteredMovies(search, isChecked, 0, pageSize)
+        search.length <= 1 || search.trim()=="" ? fetchDefaultTop10(isChecked) : fetchFilteredMovies(search, isChecked, 0, pageSize)
       } catch (err) {
         setError(err.message);
       }
@@ -165,7 +164,7 @@ const HomePage = () => {
     console.log("search:", search.length);
     console.log("Switch is now:", event.target.checked);
     setCurrentPage(0); //kada se mijenja switch, treba se setovati i current page 
-    if (search.length <= 1) {
+    if (search.length <= 1 || search.trim()=="") {
       console.log("fetch default 10");
       fetchDefaultTop10(event.target.checked);
     }

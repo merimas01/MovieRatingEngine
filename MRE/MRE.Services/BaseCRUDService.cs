@@ -16,11 +16,6 @@ namespace MRE.Services
         {
         }
 
-        public virtual async Task BeforeInsert(TDb entity, TInsert insert)
-        {
-
-        }
-
         public virtual async Task AfterInsert(TDb entity, TInsert insert)
         {
 
@@ -41,7 +36,6 @@ namespace MRE.Services
 
             TDb entity = _mapper.Map<TDb>(insert);
 
-            await BeforeInsert(entity, insert);
             var validate = await AddValidationInsert(insert);
 
             if (validate == true)
