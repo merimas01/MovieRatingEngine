@@ -36,6 +36,7 @@ Built with .NET, ReactJs and SQL Server.
 - Visual Studio Code
 - Node.js (v22.14.0)
 - Set your OpenAI API Key in Environment variable called ***API_KEY*** and restart your PC
+- Create .env file in **my-app** folder and set a variable called ***VITE_GOOGLE_CLIENT_ID*** that contains your OAuth2.0 ClientID
 
 ### Backend
 - Open **MRE** project in Visual Studio 2022
@@ -51,4 +52,4 @@ Built with .NET, ReactJs and SQL Server.
 - Write these commands:
 - - npm install
 - - npm run dev
-- The app should open at: http://localhost:5173/
+- The app should open at: http://localhost:5173/ 
