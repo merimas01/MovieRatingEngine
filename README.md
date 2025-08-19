@@ -10,11 +10,11 @@ Built with .NET, ReactJs and SQL Server.
 <img width="1892" height="907" alt="toggle" src="https://github.com/user-attachments/assets/3f4b0df9-5f64-4ac3-9eb8-e49b8641bb01" />
 
 ### Intelligent and automatic search engine
-- This engine automatically activates after 2 characters are entered. It matches any textual atrribute of the movie or TV show (title, description, cast) and can intelligently parse phrases such as: "5 stars", "at least 3 stars", "after 2016", "older than 5 years" etc. Search results are also sorted by rating. 
+- This engine automatically activates after 2 characters are entered (a white space string doesn't count). It matches any textual atrribute of the movie or TV show (title, description, cast) and can intelligently parse phrases such as: "5 stars", "at least 3 stars", "after 2016", "older than 5 years" etc. Search results are also sorted by rating. 
 <img width="1892" height="902" alt="search" src="https://github.com/user-attachments/assets/3cf5097c-8f91-4f69-9430-48a7cc4abec5" />
 
-- "No matches" message - Users are informed if no matches are found. Below the message they can see all the movies/TV shows.
-<img width="1895" height="906" alt="nomatches" src="https://github.com/user-attachments/assets/fbbe45b5-b2a2-416f-a689-90086e20db13" />
+- "No matches" message - Users are informed if no matches are found. 
+<img width="1898" height="890" alt="nomatches2" src="https://github.com/user-attachments/assets/a86c0516-0cc5-421f-823a-4f5348bf31c5" />
 
 ### Pagination with a button "View more results"
 - The button loads the next 5 items when clicked.
@@ -32,7 +32,7 @@ Built with .NET, ReactJs and SQL Server.
 ## Setup instructions
 
 ### Prerequisites
-- Visual Studio (ASP .NET Core framework v8)
+- Visual Studio 22 (ASP .NET Core framework v8)
 - Visual Studio Code
 - Node.js (v22.14.0)
 - Set your OpenAI API Key in Environment variable called ***API_KEY*** and restart your PC
