@@ -39,6 +39,19 @@
     padding: 5px;
 }
 
+.login {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logInOut {
+    margin: 10px;
+    display: flex;
+    justify-content: start;
+}
+
+
 
 @media screen and (max-width: 768px) {
     .grid-movies-shows {

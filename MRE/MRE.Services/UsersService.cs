@@ -21,6 +21,20 @@ namespace MRE.Services
         {
         }
 
+        public override async Task BeforeInsert(User entity, UserInsertRequest insert)
+        {
+            entity.PasswordSalt = GenerateSalt();
+            entity.PasswordHash = GenerateHash(entity.PasswordSalt, insert.Password);
+        }
+
+        public override async Task<bool> AddValidationInsert(UserInsertRequest request)
+        {
+            if (request.Password != request.PasswordAgain) return false;
+            var usernames = _context.Users.Select(x => x.Username);
+            if (usernames.Contains(request.Username)) return false;
+            return true;
+          
+        }
         public static string GenerateSalt()
         {
             var provider = new RNGCryptoServiceProvider();

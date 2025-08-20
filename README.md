@@ -17,7 +17,7 @@ Built with .NET, ReactJs and SQL Server.
 <img width="1898" height="890" alt="nomatches2" src="https://github.com/user-attachments/assets/a86c0516-0cc5-421f-823a-4f5348bf31c5" />
 
 ### Pagination with a button "View more results"
-- The button loads the next 5 items when clicked.
+- The button loads the next 10 items when clicked.
 <img width="1900" height="900" alt="btnView" src="https://github.com/user-attachments/assets/5c908ba2-8702-42ef-b68b-202b0b90e290" />
 
 ### Star rating
@@ -36,7 +36,6 @@ Built with .NET, ReactJs and SQL Server.
 - Visual Studio Code
 - Node.js (v22.14.0)
 - Set your OpenAI API Key in Environment variable called ***API_KEY*** and restart your PC
-- Optional (just for OAuth2 based authorization): Create .env file in **my-app** folder and set a variable called ***VITE_GOOGLE_CLIENT_ID*** with your OAuth2.0 ClientID
 
 ### Backend
 - Open **MRE** project in Visual Studio 2022

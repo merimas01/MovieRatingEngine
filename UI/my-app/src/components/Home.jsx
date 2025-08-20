@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import "./HomePageStyle.css";
 import { Switch, Box } from "@mui/material";
 import Button from '@mui/material/Button';
@@ -7,15 +7,15 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import { useNavigate } from "react-router-dom";
-import Login from "./Login";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Login, Logout } from "@mui/icons-material";
+import { Tooltip } from "@mui/material";
 
 const HomePage = () => {
 
-  const [movies, setMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
-  const [filteredMoviesCurrentLength, setFilteredMoviesCurrentLength] = useState(0);
-  const [filteredMoviesTotalLenght, setFilteredMoviesTotalLength] = useState(0);
+  const [results, setResults] = useState([]);
+  const [resultsCurrentLength, setResultsCurrentLength] = useState(0);
+  const [resultsTotalLenght, setResultsTotalLength] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const [error, setError] = useState("");
@@ -25,46 +25,20 @@ const HomePage = () => {
   const [notification, setNotification] = useState("");
   const [search, setSearch] = useState("");
 
+  const location = useLocation();
+  const { userFullName, userId } = location.state || {};
+
+
   const navigate = useNavigate();
 
-  const fetchDefaultTop10 = async (isShow) => {
+  const fetchData = async (fts = "", isShow = false, page = 0, pageSize = 5) => {
     setError("");
-    setMovies([]);
-
-    try {
-      const basicAuth = btoa("test:test"); // username:password
-      const response = await fetch(
-        "http://localhost:5208/api/Movies/top10/" + isShow,
-        {
-          method: "GET",
-          headers: {
-            "Authorization": `Basic ${basicAuth}`,
-            "Accept": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-
-      setMovies(data);
-      console.log(data);
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  const fetchFilteredMovies = async (fts = "", isShow = false, page = 0, pageSize = 5) => {
-    setError("");
-    setPageSize(pageSize);
 
     console.log("fts: ", fts);
     console.log("is show: ", isShow);
 
-    var url = `http://localhost:5208/api/Movies?FTS=${fts}&isShow=${isShow}&Page=${page}&PageSize=${pageSize}`
+    var url = fts != null ? `http://localhost:5208/api/Movies?FTS=${fts}&isShow=${isShow}&Page=${page}&PageSize=${pageSize}`
+      : `http://localhost:5208/api/Movies?isShow=${isShow}&Page=${page}&PageSize=${pageSize}`
     try {
       const basicAuth = btoa("test:test"); // username:password
       const response = await fetch(
@@ -87,14 +61,14 @@ const HomePage = () => {
       console.log(data);
 
       if (page != 0) {
-        const list3 = [...filteredMovies, ...(data.result)];
-        setFilteredMovies(list3);
+        const list3 = [...results, ...(data.result)];
+        setResults(list3);
       }
       else
-        setFilteredMovies(data.result);
+        setResults(data.result);
 
-      setFilteredMoviesCurrentLength(data.currentCount);
-      setFilteredMoviesTotalLength(data.count);
+      setResultsCurrentLength(data.currentCount);
+      setResultsTotalLength(data.count);
       setTotalCountBeforeFilter(data.totalCountBeforeFilter);
     } catch (err) {
       setError(err.message);
@@ -112,18 +86,19 @@ const HomePage = () => {
 
     if (newValue.length >= 2 && newValue.trim() !== "") {
       console.log("isChecked", isChecked);
-      fetchFilteredMovies(newValue.trim(), isChecked, 0, pageSize);
+      fetchData(newValue.trim(), isChecked, 0, pageSize);
     }
-    else{
-      fetchDefaultTop10(isChecked);
-      setFilteredMovies([]);
-      console.log("filteredMovies when the search is 0", filteredMovies);
+    else {
+      fetchData(null, isChecked, 0, pageSize);
+      //setResults([]);
+      console.log("results when the search is 0", results);
     }
   };
 
   useEffect(() => {
     setIsChecked(false);
-    fetchDefaultTop10(false);
+    setPageSize(10);
+    fetchData(null, false, 0, 10);
   }, []);
 
 
@@ -155,7 +130,7 @@ const HomePage = () => {
         showNotification("Rated successfully!");
 
         //refresh the list
-        search.length <= 1 || search.trim()=="" ? fetchDefaultTop10(isChecked) : fetchFilteredMovies(search, isChecked, 0, pageSize)
+        search.length <= 1 || search.trim() == "" ? fetchData(null, isChecked, 0, pageSize) : fetchData(search, isChecked, 0, pageSize)
       } catch (err) {
         setError(err.message);
       }
@@ -168,11 +143,11 @@ const HomePage = () => {
     console.log("search:", search.length);
     console.log("Switch is now:", event.target.checked);
     setCurrentPage(0); //kada se mijenja switch, treba se setovati i current page 
-    if (search.length <= 1 || search.trim()=="") {
+    if (search.length <= 1 || search.trim() == "") {
       console.log("fetch default 10");
-      fetchDefaultTop10(event.target.checked);
+      fetchData(null, event.target.checked, 0, pageSize);
     }
-    else fetchFilteredMovies(search, event.target.checked, 0, pageSize);
+    else fetchData(search, event.target.checked, 0, pageSize);
   };
 
 
@@ -187,8 +162,18 @@ const HomePage = () => {
 
   return (
     <>
+      <div className="login">
+
+        <div className="logInOut">
+          {!userFullName && <Tooltip title="Login"><IconButton onClick={() => { navigate("/login") }}> <Login /></IconButton> </Tooltip>}
+          {userFullName && <Tooltip title="Logout"> <IconButton onClick={() => { navigate("/", { state: {} }); }}><Logout /></IconButton> </Tooltip>}
+        </div>
+        {userFullName && <h5>Hello {userFullName}!</h5>}
+
+      </div>
+
       <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-        <Login/>
+
         <h1 className="title">Movie Rating Engine 🎬 </h1>
 
         <div
@@ -232,7 +217,7 @@ const HomePage = () => {
             />
 
             <IconButton>
-              <CloseIcon onClick={() => { setSearch(""); setFilteredMovies([]); setFilteredMoviesCurrentLength(0); setFilteredMoviesTotalLength(0); fetchDefaultTop10(isChecked) }} />
+              <CloseIcon onClick={() => { setSearch(""); setResultsCurrentLength(0); setResultsTotalLength(0); fetchData(null, isChecked, 0, pageSize); }} />
             </IconButton>
           </Box>
         </div>
@@ -247,14 +232,15 @@ const HomePage = () => {
         </div>
 
         <div>
-          {search.length > 1 && search.trim()!="" && (filteredMoviesTotalLenght == 0) &&
+          {search.length > 1 && search.trim() != "" && (resultsTotalLenght == 0) &&
             <div style={{
               marginBottom: "1rem", backgroundColor: "#f8d7da", color: "#721c24",
               padding: "10px",
             }}>Sadly, no matches found. </div>}
 
           <div className="grid-movies-shows" >
-            {(search.length >= 2 && search.trim() != "" ? filteredMovies : movies).map((movie, index) => (
+            {/* (search.length >= 2 && search.trim() != "" ? results : movies) */}
+            {results && results.map((movie, index) => (
 
               <div className="movie-card"
                 key={`${movie.movieId}-${index}`} onClick={() => setSelectedMovie(movie)}>
@@ -270,6 +256,11 @@ const HomePage = () => {
                   <p style={{ margin: "0 0 5px 0", fontSize: "0.9rem" }}>
                     {movie.description}
                   </p>
+                  <p style={{ margin: "0 0 5px 0", fontSize: "0.9rem", fontWeight: "bold" }}>
+                    {movie.movieActors
+                      .map(ma => `${ma.actor.firstName} ${ma.actor.lastName}`)
+                      .join(", ")}
+                  </p>
                   <p style={{ margin: 0 }}>⭐ {movie.averageRate}</p>
                 </div>
               </div>
@@ -278,7 +269,10 @@ const HomePage = () => {
 
 
           {/*ovo dugme se pojavi samo ako postoji paginacija, tj. vise od jedne stranice rezultata */}
-          {search.length > 1 && search.trim() != "" && filteredMovies && filteredMoviesCurrentLength < filteredMoviesTotalLenght
+
+          {/* search.length > 1 && search.trim() != "" &&  */}
+
+          {results && resultsCurrentLength < resultsTotalLenght
             && <Box textAlign="center">
               <Button variant="outlined" sx={{
                 borderColor: "primary.main",
@@ -290,7 +284,7 @@ const HomePage = () => {
                   color: "white",
                 },
               }}
-                onClick={() => { setCurrentPage(currentPage + 1); console.log(currentPage); fetchFilteredMovies(search, isChecked, currentPage + 1, pageSize); }}
+                onClick={() => { setCurrentPage(currentPage + 1); console.log(currentPage); fetchData(search, isChecked, currentPage + 1, pageSize); }}
               >View more results</Button>
             </Box>
           }

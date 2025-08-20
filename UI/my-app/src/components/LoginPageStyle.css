@@ -1,0 +1,20 @@
+.Login {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1;
+
+   
+
+  width: 90%;              /* use percentage width */
+  max-width: 700px;        /* cap at desktop width */
+  margin: 100px auto;      /* center horizontally */
+  padding: 30px;           /* smaller padding for mobile */
+
+  font-family: "sans-serif";
+  background-color: #def0f4;
+  border-radius: 12px;     /* optional: nice rounding */
+  box-sizing: border-box;
+}
+

@@ -21,31 +21,31 @@ namespace MRE.Services
         {
         }
 
-        public async Task<List<Movies>> GetTop10(bool isShow = false) 
-        {
-            var query = _context.Movies.AsQueryable();
+        //public async Task<List<Movies>> GetTop10(bool isShow = false) 
+        //{
+        //    var query = _context.Movies.AsQueryable();
 
-            query =query.Where(x => x.IsShow == isShow);
+        //    query =query.Where(x => x.IsShow == isShow);
 
-            query =
-               query.Include(x => x.MovieRatings)
-           .Include(x => x.MovieActors).ThenInclude(x => x.Actor);
+        //    query =
+        //       query.Include(x => x.MovieRatings)
+        //   .Include(x => x.MovieActors).ThenInclude(x => x.Actor);
     
-            query=query.OrderByDescending(x=>x.AverageRate).Skip(0)
-            .Take(10);
+        //    query=query.OrderByDescending(x=>x.AverageRate).Skip(0)
+        //    .Take(10);
 
-            var list= await query.ToListAsync();
+        //    var list= await query.ToListAsync();
 
-            //foreach(var movie in list)
-            //{
-            //    movie.AverageRate = Math.Round((decimal)_context.MovieRatings.Where(x => x.MovieId == movie.MovieId).Select(x => x.Rate).Average(),2);
-            //}
+        //    //foreach(var movie in list)
+        //    //{
+        //    //    movie.AverageRate = Math.Round((decimal)_context.MovieRatings.Where(x => x.MovieId == movie.MovieId).Select(x => x.Rate).Average(),2);
+        //    //}
 
-            var tmp = _mapper.Map<List<Movies>>(list);
+        //    var tmp = _mapper.Map<List<Movies>>(list);
 
-            return tmp;
+        //    return tmp;
 
-        }
+        //}
 
         public IQueryable<Movie> FilterExactStars(IQueryable<Movie> query, int stars)
         {

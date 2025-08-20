@@ -112,7 +112,16 @@ using (var scope = app.Services.CreateScope())
               PasswordHash= hash1,
               PasswordSalt= salt1,
               Role="Admin"
-          }
+          },
+            new User
+            {
+                FirstName = "User1",
+                LastName = "User1",
+                Username = "user1",
+                PasswordHash = hash1,
+                PasswordSalt = salt1,
+                Role = "User"
+            }
             );
 
         dataContext.SaveChanges();
